@@ -20,9 +20,9 @@
 
 <link rel="stylesheet" href="/styles.css" />
 
-<script src="/le.js"></script>
-<script src="/module.js"></script>
-<script src="/root.js"></script>
+<script src="le.js"></script>
+<script src="module.js"></script>
+<script src="root.js"></script>
 
 <loading></loading>
 <body ng-controller="root">
@@ -40,3 +40,18 @@
 </body>
 
 </html>
+<script src="//cdn.jsdelivr.net/npm/eruda"></script>
+<script>eruda.init();</script>
+<script>
+
+  let el = document.createElement('div');
+  document.body.appendChild(el);
+  
+  eruda.init({
+    container: el,
+    tool: ['console', 'elements']
+  });
+  
+  //console.log(eruda);
+  
+</script>
