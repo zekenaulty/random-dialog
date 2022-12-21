@@ -57,6 +57,8 @@
 
     let vm = this;
     
+    $scope.baseRef = baseRef;
+    
     return vm;
   });
 
