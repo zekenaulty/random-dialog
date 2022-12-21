@@ -13,9 +13,9 @@ window['is'] = function(n) {
 let baseRef = '';
 //https://zekenaulty.github.io/random-dialog
 if(!location.href.startsWith('https://localhost') && !location.href.startsWith('http://localhost')){
-  baseRef = 'https://zekenaulty.github.io/random-dialog';
+  baseRef = 'https://zekenaulty.github.io/random-dialog/';
 } else{
-  baseRef = 'http://localhost:7700';
+  //baseRef = 'http://localhost:7700/';
 }
 
 /*
@@ -850,7 +850,7 @@ const QUERY_STATE = 'QUERY_STATE';
   }
 
   a.module('rd').component('systemAlert', {
-    templateUrl: baseRef + '/components/alerts.html',
+    templateUrl: baseRef + 'components/alerts.html',
     controller: SystemAlertController
   });
 })(window.angular);
@@ -945,7 +945,7 @@ const QUERY_STATE = 'QUERY_STATE';
   }
 
   a.module('rd').component('systemMessage', {
-    templateUrl: baseRef + '/components/messages.html',
+    templateUrl: baseRef + 'components/messages.html',
     controller: SystemMessageController
   });
 })(window.angular);
@@ -1083,7 +1083,7 @@ const QUERY_STATE = 'QUERY_STATE';
   }
 
   a.module('rd').component('systemModal', {
-    templateUrl: baseRef + '/components/modals.html',
+    templateUrl: baseRef + 'components/modals.html',
     controller: SystemModalController,
     controllerAs: '$modal'
   });
@@ -1166,7 +1166,7 @@ const QUERY_STATE = 'QUERY_STATE';
   }
 
   a.module('rd').component('loading', {
-    templateUrl: baseRef + '/components/loading.html',
+    templateUrl: baseRef + 'components/loading.html',
     controller: LoadingController
   });
 })(window.angular);
