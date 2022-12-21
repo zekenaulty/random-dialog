@@ -33,7 +33,7 @@
   }
 
   a.module('rd').component('navbarInternal', {
-    templateUrl: '/components/navbar-internal.html',
+    templateUrl: baseRef + '/components/navbar-internal.html',
     controller: NavbarController
   });
 })(window.angular);

@@ -10,6 +10,12 @@ window['is'] = function(n) {
   }
 };
 
+let baseRef = '';
+//https://zekenaulty.github.io/random-dialog
+if(!location.href.startsWith('https://localhost') && !location.href.startsWith('http://localhost')){
+  baseRef = 'https://zekenaulty.github.io/random-dialog';
+}
+
 /*
 
     because of the loose coupling between components we need a reliable means to define events
@@ -842,7 +848,7 @@ const QUERY_STATE = 'QUERY_STATE';
   }
 
   a.module('rd').component('systemAlert', {
-    templateUrl: '/components/alerts.html',
+    templateUrl: baseRef + '/components/alerts.html',
     controller: SystemAlertController
   });
 })(window.angular);
@@ -937,7 +943,7 @@ const QUERY_STATE = 'QUERY_STATE';
   }
 
   a.module('rd').component('systemMessage', {
-    templateUrl: '/components/messages.html',
+    templateUrl: baseRef + '/components/messages.html',
     controller: SystemMessageController
   });
 })(window.angular);
@@ -1075,7 +1081,7 @@ const QUERY_STATE = 'QUERY_STATE';
   }
 
   a.module('rd').component('systemModal', {
-    templateUrl: '/components/modals.html',
+    templateUrl: baseRef + '/components/modals.html',
     controller: SystemModalController,
     controllerAs: '$modal'
   });
@@ -1158,7 +1164,7 @@ const QUERY_STATE = 'QUERY_STATE';
   }
 
   a.module('rd').component('loading', {
-    templateUrl: '/components/loading.html',
+    templateUrl: baseRef + '/components/loading.html',
     controller: LoadingController
   });
 })(window.angular);
