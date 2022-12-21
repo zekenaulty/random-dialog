@@ -1,0 +1,16 @@
+<div ng-repeat="modal in $modal.data.modals" class="modal fade" id="system-modal-{{$index}}">
+  <div ng-class="modal.cssClasses">
+    <div class="modal-content">
+      <div class="modal-header" ng-if="modal.title">
+        <h6 class="modal-title">{{modal.title}}</h6>
+      </div>
+      <div class="modal-body" ng-if="modal.content">
+        <div compile="{{modal.content}}"></div>
+      </div>
+      <div class="modal-footer">
+        <button ng-repeat="btn in modal.buttons" type="button" ng-class="btn.classes" ng-click="btn.callback(modal.name, $modal.getEventArgs(modal))">{{btn.text}}</button>
+        <button type="button" class="btn btn-primary" ng-click="$modal.removeModal(modal)" ng-if="modal.showClose">{{modal.closeText}}</button>
+      </div>
+    </div>
+  </div>
+</div>

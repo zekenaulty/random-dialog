@@ -1,0 +1,4 @@
+<div ng-if="$ctrl.data.active" ng-class="$ctrl.data.active.type" role="alert" id="system-alert">
+  <button type="button" class="close" ng-click="$ctrl.removeAlert()">&times;</button>
+  <div class="d-inline-block" compile="{{$ctrl.data.active.content}}"></div>
+</div>
