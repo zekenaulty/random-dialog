@@ -12,9 +12,9 @@ window['is'] = function(n) {
 
 let baseRef = '';
 //https://zekenaulty.github.io/random-dialog
-if(!location.href.startsWith('https://localhost') && !location.href.startsWith('http://localhost')){
+if (!location.href.startsWith('https://localhost') && !location.href.startsWith('http://localhost')) {
   //baseRef = 'https://zekenaulty.github.io/random-dialog/';
-} else{
+} else {
   //baseRef = 'http://localhost:7700/';
 }
 
@@ -378,7 +378,7 @@ const QUERY_STATE = 'QUERY_STATE';
         params.options = { backdrop: 'static', keyboard: false, focus: true };
 
       console.log('boop');
-      
+
       //send the data to the component
       channels.raise(
         MODAL_FACTORY,
@@ -1173,3 +1173,39 @@ const QUERY_STATE = 'QUERY_STATE';
 //end loading component 
 
 
+
+//card component
+(function(a) {
+  'use strict';
+
+  function CardController(
+    $interval,
+    $http,
+    ajax) {
+    var vm = this;
+
+    vm.header = undefined;
+    vm.title = undefined;
+    vm.body = undefined;
+    
+    vm.hide = function(){
+      return !vm.header && !vm.title && !vm.body;
+    };
+    
+    console.log('card created');
+    
+    return vm;
+  }
+
+  a.module('rd').component('card', {
+    templateUrl: baseRef + 'components/card.html',
+    controller: CardController,
+    controllerAs: 'vm',
+    bindings: {
+      header: '<',
+      body: '<',
+      title: '<'
+    }
+  });
+})(window.angular);
+//end card component 

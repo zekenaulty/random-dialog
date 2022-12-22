@@ -29,11 +29,18 @@
   <navbar-internal></navbar-internal>
   <div>&nbsp;</div>
   <div class="container">
-{{baseRef}}
+    
     <system-alert class="notification-well">
 
     </system-alert>
-
+    
+    <card 
+      ng-repeat="card in cards" 
+      title="card.title" 
+      header="card.header" 
+      body="card.body"
+      class="p-2"/>
+      
   </div>
   <div>&nbsp;</div>
   <system-modal></system-modal>
