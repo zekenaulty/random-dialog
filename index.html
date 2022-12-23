@@ -27,11 +27,9 @@
 <script src="module.js"></script>
 <script src="root.js"></script>
 
-<loading></loading>
-
-
-
 <body ng-controller="root">
+  <loading></loading>
+
   <navbar-internal class="sticky-top"></navbar-internal>
   <div class="container">
 
@@ -58,4 +56,7 @@
     container: el,
     tool: ['console', 'elements']
   });
+  
+  //$('body').children().not('loader').addClass('loader-hide');
+
 </script>

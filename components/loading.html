@@ -11,6 +11,7 @@
 <div id="__loader_unq__11" class="loader-over loader-hide d-flex align-items-center justify-content-center">
   <div class="loader-msg"><em>Loading</em></div>
 </div>
+
 <style>
   .inner-loader {
     border: 8px solid #f3f3f3;
@@ -24,8 +25,8 @@
   }
 
   .loader {
-    background-color: white;
-    position: absolute;
+    background-color: black !important;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -34,8 +35,7 @@
   }
 
   .loader-over {
-    background-color: rgba(100, 100, 100, 0.5);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -44,7 +44,7 @@
   }
 
   .loader-msg {
-    color: black;
+    color: white;
     text-align: center;
     line-height: 72px;
   }
@@ -63,7 +63,9 @@
     display: none !important;
   }
 
-  .loader-open {
+  body.loader-open {
+    height: 100vh;
     overflow: hidden;
+    padding-right: 15px;
   }
 </style>

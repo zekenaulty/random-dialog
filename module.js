@@ -10,6 +10,7 @@ window['is'] = function(n) {
   }
 };
 
+
 let baseRef = '';
 //https://zekenaulty.github.io/random-dialog
 if (!location.href.startsWith('https://localhost') && !location.href.startsWith('http://localhost')) {
@@ -251,31 +252,30 @@ const QUERY_STATE = 'QUERY_STATE';
     $timeout) {
     var root = this;
 
+    
     root.show = function(duration) {
       if (duration) {
         $('#__loader_unq__00').removeClass('loader-hide');
         $('#__loader_unq__11').removeClass('loader-hide');
-        $('body').addClass('loader-open');
         $timeout(function() {
           root.hide(true);
         }, duration);
       } else {
         $('#__loader_unq__0').removeClass('loader-hide');
         $('#__loader_unq__1').removeClass('loader-hide');
-        $('body').addClass('loader-open');
       }
+      $('body').addClass('loader-open');
     };
 
     root.hide = function(alt) {
       if (alt) {
         $('#__loader_unq__00').addClass('loader-hide');
         $('#__loader_unq__11').addClass('loader-hide');
-        $('body').removeClass('loader-open');
       } else {
         $('#__loader_unq__0').addClass('loader-hide');
         $('#__loader_unq__1').addClass('loader-hide');
-        $('body').removeClass('loader-open');
       }
+      $('body').removeClass('loader-open');
     };
 
     return root;
