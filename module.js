@@ -955,7 +955,11 @@ const QUERY_STATE = 'QUERY_STATE';
 (function(a) {
   'use strict';
   //this component should only be used once in the entire project
-  function SystemModalController($scope, $timeout, component, channels) {
+  function SystemModalController(
+    $scope, 
+    $timeout, 
+    component, 
+    channels) {
     var ctrl = component.extend(this, 'SystemModals');
 
     ctrl.data = {
@@ -973,27 +977,31 @@ const QUERY_STATE = 'QUERY_STATE';
         EVENT_REGISTER,
         idx);
 
-      params.index = function() {
-        var name = this.name;
+      params.index = function(name) {
+        //var name = ctrl.name;
         return ctrl.data.modals.findIndex(function(i) { return name === i.name; });
       };
 
       params.id = 'system-modal-' + idx;
       params.selector = '#' + params.id;
+      
+      //console.log(params);
 
       Object.defineProperty(params, 'jq', {
         get: function() {
-          return $(this.selector);
+          return $(params.selector);
         }
       });
 
       ctrl.data.modals.push(params);
-
       ctrl[params.name] = params.data;
 
       function pop() {
         $timeout(function() {
-          params.jq.modal(params.options);
+          //console.log(params.jq);
+          //console.log(params.options);
+          //params.jq.modal(params.options);
+          params.jq.modal('show');
         }, 250);
       }
 
@@ -1013,9 +1021,9 @@ const QUERY_STATE = 'QUERY_STATE';
         );
       } else {
         params.content = params.template;
+        //console.log('pop');
         pop();
       }
-
     };
 
     ctrl.getEventArgs = function(item) {
@@ -1029,9 +1037,11 @@ const QUERY_STATE = 'QUERY_STATE';
 
     ctrl.removeModal = function(item) {
 
-      let idx = item.index();
-      let m = ctrl.data.modals[idx];
+      let m = item;
+      let idx = m.index(m.name);
 
+      //console.log(item);
+      //console.log(idx);
       //run any needed callback code
       if (is(m.closeCallback)) {
         m.closeCallback();

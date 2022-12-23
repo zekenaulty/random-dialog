@@ -1,5 +1,3 @@
-
-
 //navbar component
 (function(a) {
   'use strict';
@@ -8,35 +6,49 @@
     $rootScope,
     $interval,
     $timeout,
-    $http, 
-    loader, 
-    alerts, 
-    messages, 
+    $http,
+    loader,
+    alerts,
+    messages,
     modals,
     ajax) {
     var vm = this;
 
     vm.ipsum = new LoremIpsum();
-    vm.alertMsg = function(){
+    vm.alertMsg = function() {
       alerts.alert("info", vm.ipsum.sentence(4, 14));
     };
-    
-    vm.modal = function(){
+
+    vm.modal = function() {
       modals.show({
+        name: 'demo' + (Math.floor(Math.random() * 99999)),
         title: vm.ipsum.sentence(),
-        data:{},
-        template: vm.ipsum.paragraph()
+        data: {},
+        template: vm.ipsum.paragraph(),
+        buttons: 
+        [{
+          classes: {
+            "btn": true,
+            "btn-danger": true
+          },
+          text: '?',
+          callback: function(name, e) {
+            e.close();
+            alerts.warning(name + ' was closed');
+          }
+        }],
+        showClose: false
       });
     };
-    
-    vm.loader = function(){
+
+    vm.loader = function() {
       loader.show();
     };
-    
-    vm.cards = function(){
+
+    vm.cards = function() {
       $rootScope.cards();
     };
-    
+
     return vm;
   }
 
@@ -65,16 +77,16 @@
 
     let vm = this;
     vm.ipsum = new LoremIpsum();
-    
+
     $scope.baseRef = baseRef;
     $scope.cards = new Array();
-    
-    $rootScope.cards = function(){
+
+    $rootScope.cards = function() {
       let l = Math.floor(Math.random() * 6) + 1;
       l += Math.floor(Math.random() * 4) + 1;
 
-      
-      for(let i = 0; i < l; i++){
+
+      for (let i = 0; i < l; i++) {
         $scope.cards.splice(0, 0,
         {
           body: vm.ipsum.paragraph(),
@@ -84,9 +96,9 @@
       }
 
     };
-    
+
     $rootScope.cards();
-    
+
     return vm;
   });
 
