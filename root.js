@@ -11,7 +11,8 @@
     alerts,
     messages,
     modals,
-    ajax) {
+    ajax,
+    channels) {
     var vm = this;
 
     vm.ipsum = new LoremIpsum();
@@ -41,9 +42,17 @@
           {
             classes: {
               "btn": true,
+              "btn-info": true
+            },
+            text: 'New Theme',
+            callback: vm.newTheme
+          },
+          {
+            classes: {
+              "btn": true,
               "btn-primary": true
             },
-            text: '+',
+            text: 'New Modal',
             callback: vm.modal
         },
           {
@@ -51,10 +60,9 @@
               "btn": true,
               "btn-warning": true
             },
-            text: '×',
+            text: 'Close Modal',
             callback: function(name, e) {
               e.close();
-              //alerts.warning(name + ' was closed');
             }
         },
           {
@@ -62,7 +70,7 @@
               "btn": true,
               "btn-danger": true
             },
-            text: '× all',
+            text: 'Close All Modals',
             callback: modals.closeAll
         }],
         showClose: false
@@ -70,11 +78,15 @@
     };
 
     vm.loader = function() {
-      loader.show();
+      loader.show(4000);
     };
 
     vm.cards = function() {
       $rootScope.cards();
+    };
+    
+    vm.newTheme = function(){
+      channels.raise(THEME, EVENT_NEW_THEME);
     };
 
     return vm;
@@ -106,9 +118,11 @@
     let vm = this;
     vm.ipsum = new LoremIpsum();
 
+    $scope.theme = 'darkly';
     $scope.baseRef = baseRef;
     $scope.cards = new Array();
 
+    //alternative to using channels 
     $rootScope.cards = function() {
       let l = Math.floor(Math.random() * 6) + 1;
       l += Math.floor(Math.random() * 4) + 1;

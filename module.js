@@ -34,10 +34,11 @@ const SESSION_SERVICE = 'SESSION_SERVICE';
 const ALERT_FACTORY = 'ALERT_FACTORY';
 const MESSAGE_FACTORY = 'MESSAGE_FACTORY';
 const MODAL_FACTORY = 'MODAL_FACTORY';
-
+const THEME = 'THEME';
 
 
 //Events
+const EVENT_NEW_THEME = 'NEW_THEME';
 const EVENT_RFERESHED = 'REFRESHED';
 const EVENT_CLOSE_ALL = 'CLOSE_ALL';
 const EVENT_SHOW = 'SHOW';
@@ -246,19 +247,35 @@ const QUERY_STATE = 'QUERY_STATE';
 //loading service
 (function(a) {
   'use strict';
-  a.module('rd').service('loader', function() {
+  a.module('rd').service('loader', function(
+    $timeout) {
     var root = this;
 
-    root.show = function() {
-      $('#__loader_unq__0').removeClass('loader-hide');
-      $('#__loader_unq__1').removeClass('loader-hide');
-      $('body').addClass('loader-open');
+    root.show = function(duration) {
+      if (duration) {
+        $('#__loader_unq__00').removeClass('loader-hide');
+        $('#__loader_unq__11').removeClass('loader-hide');
+        $('body').addClass('loader-open');
+        $timeout(function() {
+          root.hide(true);
+        }, duration);
+      } else {
+        $('#__loader_unq__0').removeClass('loader-hide');
+        $('#__loader_unq__1').removeClass('loader-hide');
+        $('body').addClass('loader-open');
+      }
     };
 
-    root.hide = function() {
-      $('#__loader_unq__0').addClass('loader-hide');
-      $('#__loader_unq__1').addClass('loader-hide');
-      $('body').removeClass('loader-open');
+    root.hide = function(alt) {
+      if (alt) {
+        $('#__loader_unq__00').addClass('loader-hide');
+        $('#__loader_unq__11').addClass('loader-hide');
+        $('body').removeClass('loader-open');
+      } else {
+        $('#__loader_unq__0').addClass('loader-hide');
+        $('#__loader_unq__1').addClass('loader-hide');
+        $('body').removeClass('loader-open');
+      }
     };
 
     return root;
@@ -345,7 +362,7 @@ const QUERY_STATE = 'QUERY_STATE';
     channels.register(
       MODAL_FACTORY,
       EVENT_SHOW,
-      EVENT_HIDE, 
+      EVENT_HIDE,
       EVENT_CLOSE_ALL
     );
 
@@ -392,12 +409,11 @@ const QUERY_STATE = 'QUERY_STATE';
         params
       );
     };
-    
-    root.closeAll = function(){
+
+    root.closeAll = function() {
       channels.raise(
         MODAL_FACTORY,
-        EVENT_CLOSE_ALL,
-        {}
+        EVENT_CLOSE_ALL, {}
       );
     };
 
@@ -824,7 +840,7 @@ const QUERY_STATE = 'QUERY_STATE';
         return;
 
       ctrl.data.alerts.push(params);
-      ctrl.data.active = ctrl.data.alerts[ctrl.data.alerts.length-1];
+      ctrl.data.active = ctrl.data.alerts[ctrl.data.alerts.length - 1];
     };
 
     ctrl.closeAll = function() {
@@ -970,9 +986,9 @@ const QUERY_STATE = 'QUERY_STATE';
   'use strict';
   //this component should only be used once in the entire project
   function SystemModalController(
-    $scope, 
-    $timeout, 
-    component, 
+    $scope,
+    $timeout,
+    component,
     channels) {
     var ctrl = component.extend(this, 'SystemModals');
 
@@ -997,7 +1013,7 @@ const QUERY_STATE = 'QUERY_STATE';
 
       params.id = 'system-modal-' + idx;
       params.selector = '#' + params.id;
-      
+
       //console.log(params);
 
       Object.defineProperty(params, 'jq', {
@@ -1074,9 +1090,9 @@ const QUERY_STATE = 'QUERY_STATE';
         $('.modal-backdrop').hide();
       }
     };
-    
-    ctrl.closeAll = function(){
-      ctrl.data.modals.forEach(function(x){
+
+    ctrl.closeAll = function() {
+      ctrl.data.modals.forEach(function(x) {
         ctrl.removeModal(x);
       });
     };
@@ -1086,7 +1102,7 @@ const QUERY_STATE = 'QUERY_STATE';
         MODAL_FACTORY,
         EVENT_SHOW,
         ctrl.showModal);
-    channels.listen(
+      channels.listen(
         MODAL_FACTORY,
         EVENT_CLOSE_ALL,
         ctrl.closeAll);
@@ -1165,8 +1181,8 @@ const QUERY_STATE = 'QUERY_STATE';
   'use strict';
 
   function LoadingController(
-    $interval, 
-    $http, 
+    $interval,
+    $http,
     ajax,
     loader) {
     var ctrl = this;
@@ -1213,13 +1229,13 @@ const QUERY_STATE = 'QUERY_STATE';
     vm.header = undefined;
     vm.title = undefined;
     vm.body = undefined;
-    
-    vm.hide = function(){
+
+    vm.hide = function() {
       return !vm.header && !vm.title && !vm.body;
     };
-    
+
     //console.log('card created');
-    
+
     return vm;
   }
 
@@ -1235,3 +1251,118 @@ const QUERY_STATE = 'QUERY_STATE';
   });
 })(window.angular);
 //end card component 
+
+
+
+
+
+
+//theme component
+(function(a) {
+  'use strict';
+
+  function ThemeController(
+    $scope,
+    $timeout,
+    $interval,
+    $http,
+    ajax,
+    channels,
+    alerts,
+    loader) {
+    var vm = this;
+
+    channels.register(
+      THEME,
+      EVENT_NEW_THEME
+    );
+
+
+    vm.theme = 'darkly';
+    vm.themes = [
+      'darkly',
+      'lux',
+      'cosmo',
+      'flatly',
+      'sketchy',
+      'cerulean',
+      'cyborg',
+      'journal',
+      'litera',
+      'lumen',
+      'materia',
+      'minty',
+      //'morph',
+      'pulse',
+      //'quartz',
+      'sandstone',
+      'simplex',
+      //'slate',
+      'solar',
+      'spacelab',
+      'superhero',
+      'united',
+      //'vapor',
+      'yeti',
+      //'zephyr',
+      'darkly'
+    ];
+
+    //preload - shows loader and prevents fli ker
+    vm.themes.forEach(function(t) {
+      ajax.get('https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/' + t + '/bootstrap.min.css');
+    });
+
+    vm.newTheme = function(theme) {
+      if (!theme) {
+        let t = vm.theme;
+
+        while (t == vm.theme) {
+          let idx = Math.floor(
+            Math.random() * vm.themes.length);
+          vm.theme = vm.themes[idx];
+        }
+
+        alerts.alert('info', 'theme changed to: ' + vm.theme);
+      } else {
+        vm.theme = theme;
+      }
+
+      loader.show(3000); //show the loader to help reduce flicker
+
+      if (vm.link)
+        document.head.removeChild(vm.link);
+
+      vm.link = document.createElement('link');
+      vm.link.id = 'theme';
+      vm.link.rel = 'stylesheet';
+      vm.link.href = 'https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/' + vm.theme + '/bootstrap.min.css';
+      document.head.appendChild(vm.link);
+    };
+
+    vm.newTheme('darkly');
+
+    vm.$onInit = function() {
+      channels.listen(
+        THEME,
+        EVENT_NEW_THEME,
+        vm.newTheme);
+    };
+
+    vm.$onDestroy = function() {
+      channels.ignore(
+        THEME,
+        EVENT_NEW_THEME,
+        vm.newTheme);
+    };
+
+    return vm;
+  }
+
+  a.module('rd').component('theme', {
+    templateUrl: baseRef + 'components/theme.html',
+    controller: ThemeController,
+    controllerAs: 'vm'
+  });
+})(window.angular);
+//end theme component 
