@@ -1,8 +1,9 @@
 
 <div class="card">
-  <div class="card-header" ng-if="vm.header">{{vm.header}}</div>
+  <div 
+    class="card-header" ng-if="vm.header" compile="{{vm.header}}"></div>
   <div class="card-body">
-    <h5 class="card-title" ng-if="vm.title">{{vm.title}}</h5>
-    <div class="card-body" ng-if="vm.body">{{vm.body}}</div>
+    <h5 class="card-title" ng-if="vm.title" compile="{{vm.title}}"></h5>
+    <div class="card-body" ng-if="vm.body" compile="{{vm.body}}"></div>
   </div>
 </div>

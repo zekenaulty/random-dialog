@@ -31,9 +31,14 @@
   <loading></loading>
 
   <navbar-internal class="sticky-top"></navbar-internal>
-  <div class="container">
 
+  <div class="container">
+<!--
+    <card header="header" title="title" body="message" />
+    //-->
+    
     <card ng-repeat="card in cards" title="card.title" header="card.header" body="card.body" class="p-2" />
+    
 
   </div>
 
@@ -48,15 +53,10 @@
 <script src="//cdn.jsdelivr.net/npm/eruda"></script>
 <script>
   eruda.init();
-</script>
-<script>
   let el = document.createElement('div');
   document.body.appendChild(el);
   eruda.init({
     container: el,
     tool: ['console', 'elements']
   });
-  
-  //$('body').children().not('loader').addClass('loader-hide');
-
 </script>

@@ -1244,9 +1244,9 @@ const QUERY_STATE = 'QUERY_STATE';
     controller: CardController,
     controllerAs: 'vm',
     bindings: {
-      header: '<',
-      body: '<',
-      title: '<'
+      header: '=',
+      body: '=',
+      title: '='
     }
   });
 })(window.angular);

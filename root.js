@@ -117,6 +117,10 @@
 
     let vm = this;
     vm.ipsum = new LoremIpsum();
+    
+    $scope.header = 'Welcome';
+    $scope.title = 'About random dialog...';
+    $scope.body = 'found a card bug..';
 
     $scope.theme = 'darkly';
     $scope.baseRef = baseRef;
