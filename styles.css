@@ -9,7 +9,7 @@
 
 .modal-backdrop {
   background-color: black;
-  opacity: 0.8;
+  opacity: 1 !important;
   z-index: 999999990;
 }
 
@@ -101,11 +101,6 @@
   flex: 1 0 0;
 }
 
-.wj-dropdown-panel {
-  margin-top: 4px;
-  min-width: 200px;
-}
-
 .fade.ng-enter {
   transition: 0.5s linear all;
   opacity: 0;
@@ -151,6 +146,8 @@
   bottom: 3px;
 }
 
+/*
+
 .notification-well {
   position: absolute;
   top: 10%;
@@ -158,3 +155,13 @@
   width: 80%;
   z-index: 600;
 }
+
+*/
+
+
+.notification-well {
+
+  
+}
+
+

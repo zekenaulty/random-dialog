@@ -25,30 +25,27 @@
 <script src="root.js"></script>
 
 <loading></loading>
-<body ng-controller="root">
-  <navbar-internal></navbar-internal>
-  <div>&nbsp;</div>
-  <div class="container">
-    
-    <system-alert class="notification-well">
 
-    </system-alert>
-    
-    <card 
-      ng-repeat="card in cards" 
-      title="card.title" 
-      header="card.header" 
-      body="card.body"
-      class="p-2"/>
-      
+<body ng-controller="root">
+  <navbar-internal class="sticky-top"></navbar-internal>
+  <div class="container">
+
+    <card ng-repeat="card in cards" title="card.title" header="card.header" body="card.body" class="p-2" />
+
   </div>
-  <div>&nbsp;</div>
+  
+  <div class="container sticky-bottom p-4">
+    <system-alert></system-alert>
+  </div>
+
   <system-modal></system-modal>
 </body>
 
 </html>
 <script src="//cdn.jsdelivr.net/npm/eruda"></script>
-<script>eruda.init();</script>
+<script>
+  eruda.init();
+</script>
 <script>
   let el = document.createElement('div');
   document.body.appendChild(el);

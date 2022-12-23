@@ -16,7 +16,19 @@
 
     vm.ipsum = new LoremIpsum();
     vm.alertMsg = function() {
-      alerts.alert("info", vm.ipsum.sentence(4, 14));
+      let css = [
+        'info',
+        'danger',
+        'warning',
+        'primary',
+        'secondary'
+        ];
+      let idx = Math.floor(
+        Math.random() * css.length
+      );
+      alerts.alert(
+        css[idx],
+        vm.ipsum.sentence(4, 14));
     };
 
     vm.modal = function() {
@@ -25,23 +37,33 @@
         title: vm.ipsum.sentence(),
         data: {},
         template: vm.ipsum.paragraph(),
-        buttons: [{
-          classes: {
-            "btn": true,
-            "btn-danger": true
-          },
-          text: 'x',
-          callback: function(name, e) {
-            e.close();
-            alerts.warning(name + ' was closed');
-          }
-        }, {
-          classes: {
-            "btn": true,
-            "btn-primary": true
-          },
-          text: '+',
-          callback: vm.modal
+        buttons: [
+          {
+            classes: {
+              "btn": true,
+              "btn-primary": true
+            },
+            text: '+',
+            callback: vm.modal
+        },
+          {
+            classes: {
+              "btn": true,
+              "btn-warning": true
+            },
+            text: '×',
+            callback: function(name, e) {
+              e.close();
+              //alerts.warning(name + ' was closed');
+            }
+        },
+          {
+            classes: {
+              "btn": true,
+              "btn-danger": true
+            },
+            text: '× all',
+            callback: modals.closeAll
         }],
         showClose: false
       });
