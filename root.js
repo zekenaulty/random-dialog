@@ -133,7 +133,7 @@
 
 
       for (let i = 0; i < l; i++) {
-        $scope.cards.splice(0, 0,
+        $scope.cards.splice(1, 0,
         {
           body: vm.ipsum.paragraph(),
           title: vm.ipsum.sentence()
@@ -142,6 +142,28 @@
       }
 
     };
+
+    
+    $scope.cards.splice(0,0,{
+      header: 'Random-Dialog',
+      title: 'About',
+      body: `
+      <p>This is a basic angularjs module used to wrap and bundle bootstrap layout and feedback integrations.</p>
+      <p>Primarily intended to provide a "simple" way for angularjs apps to quickly layout and provide basic user input/output through a central viewport.</p>
+      <h6>Features</h6>
+      <ul>
+        <li>Bootswatch Theme(s)</li>
+        <li>System Alerts</li>
+        <li>Sytem Modals</li>
+        <li>Loading Overlay</li>
+        <li>Sytem Messages</li>
+        <li>Ajax Subsystem</li>
+        <li>Event communication channels</li>
+
+      </ul>
+
+      `
+    });
 
     $rootScope.cards();
 
