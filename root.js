@@ -25,17 +25,23 @@
         title: vm.ipsum.sentence(),
         data: {},
         template: vm.ipsum.paragraph(),
-        buttons: 
-        [{
+        buttons: [{
           classes: {
             "btn": true,
             "btn-danger": true
           },
-          text: '?',
+          text: 'x',
           callback: function(name, e) {
             e.close();
             alerts.warning(name + ' was closed');
           }
+        }, {
+          classes: {
+            "btn": true,
+            "btn-primary": true
+          },
+          text: '+',
+          callback: vm.modal
         }],
         showClose: false
       });

@@ -103,13 +103,13 @@ const QUERY_STATE = 'QUERY_STATE';
       n.events = {}; //dictionary of events
 
       n.raise = function(event) {
-        console.info(n.name + ", " + event);
+        //console.info(n.name + ", " + event);
         var e = n.events[event];
         if (is(e)) {
           if (is(e.listeners) && Array.isArray(e.listeners) && e.listeners.length > 0 && is(e.dispatch)) {
             //go to the next stage and exclude the event from the arguments
             e.dispatch.apply(this, Array.prototype.slice.call(arguments).slice(1));
-            console.info("dispatched");
+            //console.info("dispatched");
           }
         }
       };
@@ -377,7 +377,7 @@ const QUERY_STATE = 'QUERY_STATE';
       if (!is(params.options))
         params.options = { backdrop: 'static', keyboard: false, focus: true };
 
-      console.log('boop');
+      //console.log('boop');
 
       //send the data to the component
       channels.raise(
@@ -998,11 +998,9 @@ const QUERY_STATE = 'QUERY_STATE';
 
       function pop() {
         $timeout(function() {
-          //console.log(params.jq);
-          //console.log(params.options);
-          //params.jq.modal(params.options);
-          params.jq.modal('show');
-        }, 250);
+          params.mod = new bootstrap.Modal(params.selector, params.options);
+          params.mod.show();
+        }, 50);
       }
 
       if (is(params.templateUrl) && params.templateUrl !== '') {
@@ -1021,7 +1019,6 @@ const QUERY_STATE = 'QUERY_STATE';
         );
       } else {
         params.content = params.template;
-        //console.log('pop');
         pop();
       }
     };
@@ -1040,20 +1037,18 @@ const QUERY_STATE = 'QUERY_STATE';
       let m = item;
       let idx = m.index(m.name);
 
-      //console.log(item);
-      //console.log(idx);
       //run any needed callback code
       if (is(m.closeCallback)) {
         m.closeCallback();
       }
 
       //hide the thing
-      m.jq.modal('hide');
+      m.mod.hide();
 
       //remove the data
       $timeout(function() {
         ctrl.data.modals.splice(idx, 1);
-      }, 250);
+      }, 50);
 
       //notify concerned parties
       channels.raise(
@@ -1061,17 +1056,7 @@ const QUERY_STATE = 'QUERY_STATE';
         EVENT_HIDE,
         idx);
 
-      //we want to ensure that the backdrop goes away, but only if we want it to
-      //ignore the current modal and check all others for visibility
-      var visibleModals = false;
-      $('.modal').not(m.jq).each(function() {
-        if ($(this).data('bs.modal')._isShown) {
-          visibleModals = true;
-          return false;
-        }
-      });
-
-      if (!visibleModals) {
+      if (ctrl.data.modals.length == 0) {
         $('body').removeClass('modal-open');
         $('.modal-backdrop').hide();
       }
@@ -1202,7 +1187,7 @@ const QUERY_STATE = 'QUERY_STATE';
       return !vm.header && !vm.title && !vm.body;
     };
     
-    console.log('card created');
+    //console.log('card created');
     
     return vm;
   }
