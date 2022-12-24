@@ -152,9 +152,9 @@
       header: 'Random-Dialog',
       title: 'About',
       body: `
-      <p>This is a basic angularjs module used to wrap and bundle bootstrap layout and feedback integrations.</p>
-      <p>Primarily intended to provide a "simple" way for angularjs apps to quickly layout and provide basic user input/output through a central viewport.</p>
-      <h6>Features</h6>
+      <p class="tiny-text">This is a basic angularjs module used to wrap and bundle bootstrap layout and feedback integrations.</p>
+      <p class="tiny-text">Primarily intended to provide a "simple" way for angularjs apps to quickly layout and provide basic user input/output through a central viewport.</p>
+      <h6 class="tiny-text">Features</h6>
       <ul class="tiny-text">
         <li>Bootswatch Theme(s)</li>
         <li>System Alerts</li>
@@ -164,7 +164,7 @@
         <li>Ajax Subsystem</li>
         <li>Event Communication Channels</li>
       </ul>
-      <p>Currently there is a bug with the message carousel...</p>
+      <p class="tiny-text">Currently there is a bug with the message carousel...</p>
       `
     });
     
