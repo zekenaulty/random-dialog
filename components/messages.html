@@ -1,12 +1,12 @@
 <div ng-if="$ctrl.data.mode === $ctrl.SUMMARY" class="d-flex">
   <button type="button" class="btn btn-link ml-auto" ng-click="$ctrl.setMode($ctrl.VIEW)">
-    <span class="h6"><i class="fas fa-bell text-white"></i>&nbsp;System Messages (<span class="text-white">{{$ctrl.data.messages.length}}</span>)</span>
+    <span class="h6"><i class="fas fa-bell text-white"></i>&nbsp;(<span class="text-white">{{$ctrl.data.messages.length}}</span>)</span>
   </button>
 </div>
-<div ng-if="$ctrl.data.messages.length > 0 && $ctrl.data.mode === $ctrl.VIEW" id="message-stack" class="card alert-card">
+<div ng-if="$ctrl.data.messages.length > 0 && $ctrl.data.mode === $ctrl.VIEW" id="message-stack" class="card alert-card message-view">
   <div class="card-header alert-card-header clearfix">
     <div class="float-left p-2">
-      <div><span class="h6 clearfix"><i class="fas fa-bell"></i>&nbsp;System Messages ({{$ctrl.data.messages.length}})</span></div>
+      <div><span class="h6 clearfix"><i class="fas fa-bell"></i>&nbsp;({{$ctrl.data.messages.length}})</span></div>
       <div p-0><a href="#" class="btn btn-link tiny-text" ng-click="$ctrl.closeAll()" ng-if="$ctrl.data.messages.length > 1">Clear All Messages</a></div>
     </div>
     <button class="close ml-auto mr-1" type="button" title="Close Messages" ng-click="$ctrl.setMode($ctrl.SUMMARY)">&times;</button>
@@ -15,8 +15,8 @@
     <div class="carousel-inner">
       <div ng-repeat="msg in $ctrl.data.messages" ng-class="msg.type" role="alert" id="system-msg-{{$index}}">
         <button type="button" class="close" ng-click="$ctrl.removeMessage($index)" ng-disabled="$ctrl.data.removing">&times;</button>
-        <div class="d-inline-block" compile="{{alert.content}}"></div>
-        <span class="tiny-text anchor-bottom-right">Message {{$index+1}} of {{$ctrl.data.messages.length}}</span>
+        <div class="d-inline-block" compile="{{msg.content}}"></div>
+        <span class="small-text anchor-bottom-right">Message {{$index+1}} of {{$ctrl.data.messages.length}}</span>
       </div>
     </div>
     <a href="#message-stack-carousel" role="button" class="carousel-control-prev" data-slide="prev" ng-if="$ctrl.data.messages.length > 1">
@@ -29,5 +29,12 @@
     </a>
   </div>
 </div>
-<!-- https://getbootstrap.com/docs/4.0/components/carousel/ -->
-<!-- https://docs.angularjs.org/api/ngAnimate -->
+
+<style>
+  .message-view{
+    position: absolute;
+    min-width: 300px;
+    right: 5px;
+    top: 5px;
+  }
+</style>

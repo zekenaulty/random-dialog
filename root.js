@@ -89,6 +89,10 @@
       channels.raise(THEME, EVENT_NEW_THEME);
     };
 
+    vm.message = function(){
+      messages.primary(vm.ipsum.sentence());
+    };
+    
     return vm;
   }
 
@@ -164,6 +168,7 @@
 
       `
     });
+    
 
     $rootScope.cards();
 

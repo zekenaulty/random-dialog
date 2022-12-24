@@ -455,6 +455,7 @@ const QUERY_STATE = 'QUERY_STATE';
           type: classType
         }
       );
+      console.log('fires message show');
     };
 
     root.primary = function(content) {
@@ -903,7 +904,6 @@ const QUERY_STATE = 'QUERY_STATE';
     };
 
     ctrl.setMode = function(m) {
-
       if (m == ctrl.VIEW && ctrl.data.messages.length > 0) {
         ctrl.data.mode = ctrl.VIEW;
       } else if (m === ctrl.SUMMARY) {
@@ -913,7 +913,7 @@ const QUERY_STATE = 'QUERY_STATE';
 
     ctrl.showMessage = function(params, interval = undefined) {
       let idx = ctrl.data.messages.length;
-
+      console.log(params);
       if (!is(params))
         return;
 
@@ -937,6 +937,7 @@ const QUERY_STATE = 'QUERY_STATE';
 
     ctrl.closeAll = function() {
       ctrl.data.messages = [];
+      ctrl.data.mode = ctrl.SUMMARY;
     };
 
     ctrl.data.removing = false;
@@ -955,6 +956,7 @@ const QUERY_STATE = 'QUERY_STATE';
       } else {
         ctrl.data.messages = [];
         ctrl.data.removing = false;
+        ctrl.data.mode = ctrl.SUMMARY;
       }
     };
 

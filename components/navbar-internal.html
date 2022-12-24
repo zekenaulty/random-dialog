@@ -1,11 +1,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">RD</a>
-      <!-- 
-      <system-message class="alert-panel">
-      
-      </system-message>
-      //-->
+      <system-message class="alert-panel"></system-message>
     </div>
   </nav>
   <nav class="bg-light d-flex justify-content-center">
@@ -13,6 +9,8 @@
     <button class="btn btn-secondary btn-n" ng-click="$ctrl.loader($event)"><i class="fa-solid fa-spinner"></i></button>
 
     <button class="btn btn-secondary btn-n" ng-click="$ctrl.alertMsg($event)"><i class="fa-solid fa-triangle-exclamation"></i></button>
+
+    <button class="btn btn-secondary btn-n" ng-click="$ctrl.message($event)"><i class="fa-regular fa-comment"></i></button>
 
     <button class="btn btn-secondary btn-n" ng-click="$ctrl.modal($event)"><i class="fa-regular fa-comment-dots"></i></button>
 
