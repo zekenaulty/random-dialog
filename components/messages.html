@@ -16,7 +16,7 @@
       <div ng-repeat="msg in $ctrl.data.messages" ng-class="msg.type" role="alert" id="system-msg-{{$index}}">
         <button type="button" class="close" ng-click="$ctrl.removeMessage($index)" ng-disabled="$ctrl.data.removing">&times;</button>
         <div class="d-inline-block" compile="{{msg.content}}"></div>
-        <span class="small-text anchor-bottom-right">Message {{$index+1}} of {{$ctrl.data.messages.length}}</span>
+        <span class="small-text hide anchor-bottom-right">Message {{$index+1}} of {{$ctrl.data.messages.length}}</span>
       </div>
     </div>
     <a href="#message-stack-carousel" role="button" class="carousel-control-prev" data-slide="prev" ng-if="$ctrl.data.messages.length > 1">
