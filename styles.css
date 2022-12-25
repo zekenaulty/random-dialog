@@ -158,6 +158,9 @@
 
 */
 
+.z-fsp {
+  z-index: 1031;
+}
 
 .notification-well {
 
