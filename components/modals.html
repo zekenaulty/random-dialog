@@ -8,8 +8,8 @@
         <div compile="{{modal.content}}"></div>
       </div>
       <div class="modal-footer">
-        <button ng-repeat="btn in modal.buttons" type="button" ng-class="btn.classes" ng-click="btn.callback(modal.name, $modal.getEventArgs(modal))">{{btn.text}}</button>
-        <button type="button" class="btn btn-primary" ng-click="$modal.removeModal(modal)" ng-if="modal.showClose">{{modal.closeText}}</button>
+        <button ng-repeat="btn in modal.buttons" type="button" ng-class="btn.classes" ng-click="btn.callback(modal.name, $modal.getEventArgs(modal))" compile="{{btn.text}}"></button>
+        <button type="button" class="btn btn-primary" ng-click="$modal.removeModal(modal)" ng-if="modal.showClose" compile="{{modal.closeText}}"></button>
       </div>
     </div>
   </div>

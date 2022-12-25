@@ -44,7 +44,7 @@
               "btn": true,
               "btn-info": true
             },
-            text: 'New Theme',
+            text: '<i class="fa-solid fa-palette"></i>',
             callback: vm.newTheme
           },
           {
@@ -52,7 +52,7 @@
               "btn": true,
               "btn-primary": true
             },
-            text: 'New Modal',
+            text: '<i class="fa-regular fa-address-card"></i>',
             callback: vm.modal
         },
           {
@@ -60,7 +60,7 @@
               "btn": true,
               "btn-warning": true
             },
-            text: 'Close Modal',
+            text: '<i class="fa-regular fa-circle-xmark"></i>',
             callback: function(name, e) {
               e.close();
             }
@@ -70,7 +70,7 @@
               "btn": true,
               "btn-danger": true
             },
-            text: 'Close All Modals',
+            text: '<i class="fa-regular fa-rectangle-xmark"></i>',
             callback: modals.closeAll
         }],
         showClose: false
@@ -164,7 +164,6 @@
         <li>Ajax Subsystem</li>
         <li>Event Communication Channels</li>
       </ul>
-      <p class="tiny-text">Currently there is a bug with the message carousel...</p>
       `
     });
     
