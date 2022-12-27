@@ -1,11 +1,11 @@
 # random-dialog
-dialog engine  provides basic dialog systems i.e conversations, thoughts, ...
+test app please ignore... nah it's just my own tinkering in the same vein as [ui-bootstrap](https://angular-ui.github.io/bootstrap/), it's not as feature complete, but it was fun to make.
 
-# dev tool 
-I developed, debugged, and deployed this little angular app on my phone using spck editor. Spck only allows 50 files per git repo, challenge accepted ;p
+# Development Tool 
+I developed, debugged, and deployed this little angular app on my phone using [spck editor](https://spck-code-editor.readthedocs.io/en/latest/). Spck only allows 50 files per git repo, challenge accepted ;p
 
-# status
-modal and messages, seem to have a few bugs. styles for ngClass is still not integrated. styles.css still needs clean-up and to be factored out into templates per component. added card component.
+# Status
+styles for ngClass is still not integrated. styles.css still needs clean-up and to be factored out into templates per component.
 
 # TODO
 add navbar component for external modules, debug, write tests
