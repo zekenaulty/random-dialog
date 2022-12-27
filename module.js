@@ -1043,7 +1043,7 @@ const QUERY_STATE = 'QUERY_STATE';
         $timeout(function() {
           params.mod = new bootstrap.Modal(params.selector, params.options);
           params.mod.show();
-        }, 50);
+        }, 0);
       }
 
       if (is(params.templateUrl) && params.templateUrl !== '') {
