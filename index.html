@@ -27,8 +27,8 @@
 
 <body ng-controller="root">
   <rd-loading></rd-loading>
-
-  <rd-navbar-internal class="sticky-top"></rd-navbar-internal>
+  <div class="sticky-top"><rd-navbar-internal></rd-navbar-internal>
+</div>
 
   <div class="container">
     <rd-card ng-repeat="card in cards" title="card.title" header="card.header" body="card.body" class="p-2"></rd-card>
