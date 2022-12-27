@@ -252,7 +252,7 @@ const QUERY_STATE = 'QUERY_STATE';
     $timeout) {
     var root = this;
 
-    
+
     root.show = function(duration) {
       if (duration) {
         $('#__loader_unq__00').removeClass('loader-hide');
@@ -455,7 +455,7 @@ const QUERY_STATE = 'QUERY_STATE';
           type: classType
         }
       );
-      console.log('fires message show');
+      //console.log('fires message show');
     };
 
     root.primary = function(content) {
@@ -828,7 +828,7 @@ const QUERY_STATE = 'QUERY_STATE';
     $timeout,
     channels,
     component) {
-    var ctrl = component.extend(this, 'SystemAlert', $scope);
+    var ctrl = component.extend(this, 'rdAlert', $scope);
 
     ctrl.data = {
       alerts: [],
@@ -893,7 +893,7 @@ const QUERY_STATE = 'QUERY_STATE';
   'use strict';
   //this component should only be used once in the entire project
   function SystemMessageController($scope, $timeout, channels, component) {
-    var ctrl = component.extend(this, 'SystemMessage', $scope);
+    var ctrl = component.extend(this, 'rdMessage', $scope);
 
     ctrl.SUMMARY = 0;
     ctrl.VIEW = 1;
@@ -906,6 +906,14 @@ const QUERY_STATE = 'QUERY_STATE';
     ctrl.setMode = function(m) {
       if (m == ctrl.VIEW && ctrl.data.messages.length > 0) {
         ctrl.data.mode = ctrl.VIEW;
+        $timeout(function() {
+          ctrl.carousel = new bootstrap.Carousel(document.querySelector('#message-stack-carousel'), {
+            ride: false,
+            wrap: true,
+            keyboard: false
+          });
+          ctrl.carousel.to(0);
+        }, 0);
       } else if (m === ctrl.SUMMARY) {
         ctrl.data.mode = ctrl.SUMMARY;
       }
@@ -913,17 +921,20 @@ const QUERY_STATE = 'QUERY_STATE';
 
     ctrl.showMessage = function(params, interval = undefined) {
       let idx = ctrl.data.messages.length;
-      console.log(params);
       if (!is(params))
         return;
 
-      if (idx === 0)
+      params.type['message-alert'] = true;
+      params.type['active'] = false;
+      if (idx === 0) {
+        ctrl.data.messages.forEach(function(m) {
+          m.type['active'] = false;
+        });
         params.type['active'] = true;
+      }
 
       ctrl.data.messages.push(params);
 
-      //I don't trust this, because of basic race conditions, but we are going to give it a go
-      //alternatly, we need to come up with a good id schema using a uuid/guid or random #
       if (is(interval)) {
         $timeout(function() {
           try {
@@ -942,17 +953,18 @@ const QUERY_STATE = 'QUERY_STATE';
 
     ctrl.data.removing = false;
     ctrl.removeMessage = function(idx) {
-      if (ctrl.data.messages.length > 1) {
-        //this is so bad; race race race
-        let pop = function() {
-          ctrl.data.messages.splice(idx, 1);
-          ctrl.data.removing = false;
-          $('#message-stack-carousel').off('slide.bs.carousel');
-        };
+      if (ctrl.data.removing)
+        return;
 
-        ctrl.data.removing = true; //poor man's lock
-        $('#message-stack-carousel').on('slide.bs.carousel', pop);
-        $('#message-stack-carousel').carousel('next');
+      ctrl.data.removing = true;
+      if (ctrl.data.messages.length > 1) {
+        if (idx == ctrl.data.messages.length - 1) {
+          ctrl.carousel.to(0);
+        } else {
+          ctrl.carousel.next();
+        }
+        ctrl.data.messages.splice(idx, 1);
+        ctrl.data.removing = false;
       } else {
         ctrl.data.messages = [];
         ctrl.data.removing = false;
@@ -992,7 +1004,7 @@ const QUERY_STATE = 'QUERY_STATE';
     $timeout,
     component,
     channels) {
-    var ctrl = component.extend(this, 'SystemModals');
+    var ctrl = component.extend(this, 'rdModals');
 
     ctrl.data = {
       modals: []
@@ -1013,7 +1025,7 @@ const QUERY_STATE = 'QUERY_STATE';
         return ctrl.data.modals.findIndex(function(i) { return name === i.name; });
       };
 
-      params.id = 'system-modal-' + idx;
+      params.id = 'rd-modal-' + idx;
       params.selector = '#' + params.id;
 
       //console.log(params);
@@ -1085,7 +1097,7 @@ const QUERY_STATE = 'QUERY_STATE';
       channels.raise(
         MODAL_FACTORY,
         EVENT_HIDE,
-        idx);
+        m);
 
       if (ctrl.data.modals.length == 0) {
         $('body').removeClass('modal-open');
@@ -1253,10 +1265,6 @@ const QUERY_STATE = 'QUERY_STATE';
   });
 })(window.angular);
 //end card component 
-
-
-
-
 
 
 //theme component

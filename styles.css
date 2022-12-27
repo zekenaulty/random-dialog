@@ -121,9 +121,14 @@
   opacity: 0;
 }
 
+
 .carousel-control-prev,
 .carousel-control-next {
-  width: 6%;
+  width: 3%;
+}
+
+.message-alert {
+  margin-bottom: 1px !important;
 }
 
 .carousel-item {}
@@ -133,6 +138,7 @@
   width: 94%;
   left: 3%;
 }
+
 
 .anchor-bottom-right {
   position: fixed;

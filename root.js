@@ -90,7 +90,7 @@
     };
 
     vm.message = function(){
-      messages.primary(vm.ipsum.sentence());
+      messages.info(vm.ipsum.sentence());
     };
     
     return vm;
