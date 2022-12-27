@@ -9,3 +9,5 @@ styles for ngClass is still not integrated. styles.css still needs clean-up and 
 
 # TODO
 add navbar component for external modules, debug, write tests
+
+browser testing and fixes
