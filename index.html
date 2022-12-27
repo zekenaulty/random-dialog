@@ -16,10 +16,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.6/ui-bootstrap-tpls.min.js" integrity="sha512-+qNXcNMBMY6Vx1oKJbdSsPsKS+bcB2yrprqb2jysz8bYC+vPJQsNBapHpq8zvf7oNGEhCgkFLKAsIeUXSkThHg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<!--
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css" integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
-//-->
-<theme></theme>
+
+<rd-theme></rd-theme>
 
 <link rel="stylesheet" href="/styles.css" />
 
@@ -28,23 +26,23 @@
 <script src="root.js"></script>
 
 <body ng-controller="root">
-  <loading></loading>
+  <rd-loading></rd-loading>
 
-  <navbar-internal class="sticky-top"></navbar-internal>
+  <rd-navbar-internal class="sticky-top"></rd-navbar-internal>
 
   <div class="container">
-    <card ng-repeat="card in cards" title="card.title" header="card.header" body="card.body" class="p-2"></card>
+    <rd-card ng-repeat="card in cards" title="card.title" header="card.header" body="card.body" class="p-2"></rd-card>
   </div>
 
 
-  <system-modal></system-modal>
+  <rd-modal></rd-modal>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-end fixed-bottom">
     <a href="https://github.com/zekenaulty/random-dialog" class="nav-item p-1" target="_blank"><i class="fa-brands fa-github"></i></a>
     <a href="https://www.linkedin.com/in/zekenaulty" class="nav-item p-1" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
   </nav>
   
   <div class="container sticky-bottom p-4 z-fsp">
-    <system-alert></system-alert>
+    <rd-alert></rd-alert>
   </div>
 </body>
 

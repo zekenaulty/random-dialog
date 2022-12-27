@@ -880,7 +880,7 @@ const QUERY_STATE = 'QUERY_STATE';
     };
   }
 
-  a.module('rd').component('systemAlert', {
+  a.module('rd').component('rdAlert', {
     templateUrl: baseRef + 'components/alerts.html',
     controller: SystemAlertController
   });
@@ -976,7 +976,7 @@ const QUERY_STATE = 'QUERY_STATE';
     };
   }
 
-  a.module('rd').component('systemMessage', {
+  a.module('rd').component('rdMessage', {
     templateUrl: baseRef + 'components/messages.html',
     controller: SystemMessageController
   });
@@ -1122,7 +1122,7 @@ const QUERY_STATE = 'QUERY_STATE';
     };
   }
 
-  a.module('rd').component('systemModal', {
+  a.module('rd').component('rdModal', {
     templateUrl: baseRef + 'components/modals.html',
     controller: SystemModalController,
     controllerAs: '$modal'
@@ -1209,7 +1209,7 @@ const QUERY_STATE = 'QUERY_STATE';
     $interval(ctrl.utility.check, 2000);
   }
 
-  a.module('rd').component('loading', {
+  a.module('rd').component('rdLoading', {
     templateUrl: baseRef + 'components/loading.html',
     controller: LoadingController
   });
@@ -1241,7 +1241,7 @@ const QUERY_STATE = 'QUERY_STATE';
     return vm;
   }
 
-  a.module('rd').component('card', {
+  a.module('rd').component('rdCard', {
     templateUrl: baseRef + 'components/card.html',
     controller: CardController,
     controllerAs: 'vm',
@@ -1361,7 +1361,7 @@ const QUERY_STATE = 'QUERY_STATE';
     return vm;
   }
 
-  a.module('rd').component('theme', {
+  a.module('rd').component('rdTheme', {
     templateUrl: baseRef + 'components/theme.html',
     controller: ThemeController,
     controllerAs: 'vm'

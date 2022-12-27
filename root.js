@@ -52,7 +52,7 @@
               "btn": true,
               "btn-primary": true
             },
-            text: '<i class="fa-regular fa-address-card"></i>',
+            text: '<i class="fa-regular fa-comment-dots"></i>',
             callback: vm.modal
         },
           {
@@ -96,7 +96,7 @@
     return vm;
   }
 
-  a.module('rd').component('navbarInternal', {
+  a.module('rd').component('rdNavbarInternal', {
     templateUrl: 'components/navbar-internal.html',
     controller: NavbarController
   });
