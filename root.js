@@ -164,6 +164,11 @@
         <li>Ajax Subsystem</li>
         <li>Event Communication Channels</li>
       </ul>
+      <div>&nbsp;</div>
+      <div>
+       <a href="https://github.com/zekenaulty/random-dialog" class="nav-item pl-3 pr-3 justify-content-start" target="_blank"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/zekenaulty" class="nav-item pr-3 justify-content-end" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
       `
     });
     
