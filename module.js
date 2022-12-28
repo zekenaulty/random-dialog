@@ -13,10 +13,10 @@ window['is'] = function(n) {
 
 let baseRef = '';
 //https://zekenaulty.github.io/random-dialog
-if (!location.href.startsWith('https://localhost') && !location.href.startsWith('http://localhost')) {
-  //baseRef = 'https://zekenaulty.github.io/random-dialog/';
+if (location.href.startsWith('https://localhost') || location.href.startsWith('http://localhost')) {
+  baseRef = '';
 } else {
-  //baseRef = 'http://localhost:7700/';
+  baseRef = 'https://zekenaulty.github.io/random-dialog/';
 }
 
 /*
