@@ -13,7 +13,7 @@
     modals,
     ajax,
     channels) {
-    var vm = this;
+    let vm = this;
 
     vm.ipsum = new LoremIpsum();
     vm.alertMsg = function() {
@@ -108,7 +108,7 @@
 
 (function(a) {
 
-  var app = a.module("rd");
+  let app = a.module("rd");
 
   app.controller('root', function(
     $rootScope,
@@ -158,9 +158,9 @@
       <ul class="tiny-text">
         <li>Bootswatch Theme(s)</li>
         <li>System Alerts</li>
-        <li>Sytem Modals</li>
+        <li>System Modals</li>
+        <li>System Messages</li>
         <li>Loading Overlay</li>
-        <li>Sytem Messages</li>
         <li>Ajax Subsystem</li>
         <li>Event Communication Channels</li>
       </ul>

@@ -33,7 +33,7 @@
 		 * @return {Number}
 		 */
 		_random: function(x, y) {
-			var rnd = (Math.random() * 2 - 1) + (Math.random() * 2 - 1) + (Math.random() * 2 - 1);
+			let rnd = (Math.random() * 2 - 1) + (Math.random() * 2 - 1) + (Math.random() * 2 - 1);
 			return Math.round(Math.abs(rnd) * x + y);
 		},
 
@@ -45,7 +45,7 @@
 		 * @return {Number}     random number
 		 */
 		_count: function(min, max) {
-			var result;
+			let result;
 			if (min && max) result = Math.floor(Math.random() * (max - min + 1) + min);
 			else if (min) result = min;
 			else if (max) result = max;
@@ -62,13 +62,13 @@
 		 * @return {Object}     array of random words
 		 */
 		words: function(min, max) {
-			var result = [];
-			var count = this._count(min, max);
+			let result = [];
+			let count = this._count(min, max);
 
 			// get random words
 			while (result.length < count) {
-				var pos = Math.floor(Math.random() * this._words.length);
-				var rnd = this._words[pos];
+				let pos = Math.floor(Math.random() * this._words.length);
+				let rnd = this._words[pos];
 
 				// do not allow same word twice in a row
 				if (result.length && result[result.length - 1] === rnd) {
@@ -89,17 +89,17 @@
 		 * @return {String}     sentence
 		 */
 		sentence: function(min, max) {
-			var words = this.words(min, max);
+			let words = this.words(min, max);
 
 			// add comma(s) to sentence
-			var index = this._random(6, 2);
+			let index = this._random(6, 2);
 			while (index < words.length - 2) {
 				words[index] += ",";
 				index += this._random(6, 2);
 			}
 
 			// append puctation on end
-			var punct = "...!?"
+			let punct = "...!?"
 			words[words.length - 1] += punct.charAt(Math.floor(Math.random() * punct.length));
 
 			// uppercase first letter
@@ -121,8 +121,8 @@
 				max = 60;
 			}
 
-			var result = "";
-			var count = this._count(min, max);
+			let result = "";
+			let count = this._count(min, max);
 
 			// append sentences until limit is reached
 			while (result.slice(0, -1).split(" ").length < count) {
@@ -132,7 +132,7 @@
 
 			// remove words
 			if (result.split(" ").length > count) {
-				var punct = result.slice(-1);
+				let punct = result.slice(-1);
 				result = result.split(" ").slice(0, count).join(" ");
 				result = result.replace(/,$/, "");
 				result += punct;

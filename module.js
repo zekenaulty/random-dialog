@@ -59,7 +59,7 @@ const QUERY_STATE = 'QUERY_STATE';
 
 //create module
 (function(a) {
-  var app = a.module("rd", []);
+  let app = a.module("rd", []);
 })(angular);
 
 //services & factories & directives
@@ -94,7 +94,7 @@ const QUERY_STATE = 'QUERY_STATE';
 (function(a) {
   'use strict';
   a.module('rd').service('channels', function() {
-    var root = this;
+    let root = this;
 
     root.channels = {}; //dictionary of channels
 
@@ -107,7 +107,7 @@ const QUERY_STATE = 'QUERY_STATE';
 
       n.raise = function(event) {
         //console.info(n.name + ", " + event);
-        var e = n.events[event];
+        let e = n.events[event];
         if (is(e)) {
           if (is(e.listeners) && Array.isArray(e.listeners) && e.listeners.length > 0 && is(e.dispatch)) {
             //go to the next stage and exclude the event from the arguments
@@ -119,7 +119,7 @@ const QUERY_STATE = 'QUERY_STATE';
 
       //isolated dispatcher constructor
       function EventDispatcher() {
-        var ed = this;
+        let ed = this;
 
         ed.listeners = [];
 
@@ -141,8 +141,8 @@ const QUERY_STATE = 'QUERY_STATE';
         };
 
         ed.dispatch = function() {
-          for (var i = 0; i < ed.listeners.length; i++) {
-            var act = ed.listeners[i];
+          for (let i = 0; i < ed.listeners.length; i++) {
+            let act = ed.listeners[i];
 
             if (is(act))
               act.apply(this, arguments);
@@ -162,11 +162,11 @@ const QUERY_STATE = 'QUERY_STATE';
 
     root.register = function(name) {
       //console.info('register event channel - ' + name)
-      var c = root.channels[name] = new Channel(name);
-      var events = Array.prototype.slice.call(arguments).slice(1);
+      let c = root.channels[name] = new Channel(name);
+      let events = Array.prototype.slice.call(arguments).slice(1);
 
       if (is(events) && Array.isArray(events)) {
-        for (var i = 0; i < events.length; i++) {
+        for (let i = 0; i < events.length; i++) {
           if (is(events[i]) && events[i] !== '')
             c.register(events[i]);
         }
@@ -179,7 +179,7 @@ const QUERY_STATE = 'QUERY_STATE';
     root.raise = function(channel, event) {
       //console.info('raise event on channel - ' + channel + ', ' + event)
 
-      var c = root.channels[channel];
+      let c = root.channels[channel];
 
       if (!is(c))
         return;
@@ -192,12 +192,12 @@ const QUERY_STATE = 'QUERY_STATE';
     root.listen = function(channel, event, callback) {
       //console.info('listen for event on channel - ' + channel + ', ' + event)
 
-      var c = root.channels[channel];
+      let c = root.channels[channel];
 
       if (!is(c))
         return;
 
-      var ed = c.events[event];
+      let ed = c.events[event];
 
       if (!is(ed))
         return;
@@ -212,12 +212,12 @@ const QUERY_STATE = 'QUERY_STATE';
     };
 
     root.ignore = function(channel, event, callback) {
-      var c = root.channels[channel];
+      let c = root.channels[channel];
 
       if (!is(c))
         return;
 
-      var ed = c.events[event];
+      let ed = c.events[event];
 
       if (!is(ed))
         return;
@@ -226,12 +226,12 @@ const QUERY_STATE = 'QUERY_STATE';
     };
 
     root.isListening = function(channel, event, callback) {
-      var c = root.channels[channel];
+      let c = root.channels[channel];
 
       if (!is(c))
         return false;
 
-      var ed = c.events[event];
+      let ed = c.events[event];
 
       if (!is(ed))
         return false;
@@ -250,7 +250,7 @@ const QUERY_STATE = 'QUERY_STATE';
   'use strict';
   a.module('rd').service('loader', function(
     $timeout) {
-    var root = this;
+    let root = this;
 
 
     root.show = function(duration) {
@@ -287,7 +287,9 @@ const QUERY_STATE = 'QUERY_STATE';
 (function(a) {
   'use strict';
   a.module('rd').factory('alerts', function($timeout, channels) {
-    var root = this;
+    
+    let root = this;
+    
     channels.register(
       ALERT_FACTORY,
       EVENT_SHOW
@@ -357,7 +359,8 @@ const QUERY_STATE = 'QUERY_STATE';
 (function(a) {
   'use strict';
   a.module('rd').factory('modals', function($timeout, channels) {
-    var root = this;
+    
+    let root = this;
 
     channels.register(
       MODAL_FACTORY,
@@ -432,7 +435,9 @@ const QUERY_STATE = 'QUERY_STATE';
 (function(a) {
   'use strict';
   a.module('rd').factory('messages', function($timeout, channels) {
-    var root = this;
+    
+    let root = this;
+    
     channels.register(
       MESSAGE_FACTORY,
       EVENT_SHOW
@@ -505,7 +510,8 @@ const QUERY_STATE = 'QUERY_STATE';
 (function(a) {
   'use strict';
   a.module('rd').service('ajax', function($http, $log) {
-    var root = this;
+    
+    let root = this;
 
     root.runningRequests = 0;
 
@@ -586,7 +592,8 @@ const QUERY_STATE = 'QUERY_STATE';
 (function(a) {
   'use strict';
   a.module('rd').service('styles', function($timeout, session) {
-    var root = this;
+    
+    let root = this;
 
     root.CommonClasses = function(target) {
       root.addCommonClasses(target);
@@ -740,7 +747,8 @@ const QUERY_STATE = 'QUERY_STATE';
 (function(a) {
   'use strict';
   a.module('rd').service('errors', function(alerts) {
-    var root = this;
+    
+    let root = this;
 
     const SPC = '&nbsp;';
 
@@ -798,7 +806,8 @@ const QUERY_STATE = 'QUERY_STATE';
     errors,
     channels
   ) {
-    var root = this;
+    
+    let root = this;
 
     root.extend = function(
       target,
@@ -828,7 +837,8 @@ const QUERY_STATE = 'QUERY_STATE';
     $timeout,
     channels,
     component) {
-    var ctrl = component.extend(this, 'rdAlert', $scope);
+      
+    let ctrl = component.extend(this, 'rdAlert', $scope);
 
     ctrl.data = {
       alerts: [],
@@ -893,7 +903,8 @@ const QUERY_STATE = 'QUERY_STATE';
   'use strict';
   //this component should only be used once in the entire project
   function SystemMessageController($scope, $timeout, channels, component) {
-    var ctrl = component.extend(this, 'rdMessage', $scope);
+    
+    let ctrl = component.extend(this, 'rdMessage', $scope);
 
     ctrl.SUMMARY = 0;
     ctrl.VIEW = 1;
@@ -925,12 +936,10 @@ const QUERY_STATE = 'QUERY_STATE';
         return;
 
       params.type['message-alert'] = true;
-      params.type['active'] = false;
       if (idx === 0) {
-        ctrl.data.messages.forEach(function(m) {
-          m.type['active'] = false;
-        });
         params.type['active'] = true;
+      } else {
+        params.type['active'] = false;
       }
 
       ctrl.data.messages.push(params);
@@ -1004,7 +1013,8 @@ const QUERY_STATE = 'QUERY_STATE';
     $timeout,
     component,
     channels) {
-    var ctrl = component.extend(this, 'rdModals');
+      
+    let ctrl = component.extend(this, 'rdModals');
 
     ctrl.data = {
       modals: []
@@ -1014,7 +1024,7 @@ const QUERY_STATE = 'QUERY_STATE';
       if (!is(params))
         return;
 
-      var idx = ctrl.data.modals.length;
+      let idx = ctrl.data.modals.length;
 
       channels.raise(
         MODAL_FACTORY,
@@ -1199,7 +1209,8 @@ const QUERY_STATE = 'QUERY_STATE';
     $http,
     ajax,
     loader) {
-    var ctrl = this;
+      
+    let ctrl = this;
 
     ctrl.utility = {
       isLoading: function() {
@@ -1238,7 +1249,8 @@ const QUERY_STATE = 'QUERY_STATE';
     $interval,
     $http,
     ajax) {
-    var vm = this;
+      
+    let vm = this;
 
     vm.header = undefined;
     vm.title = undefined;
@@ -1280,7 +1292,8 @@ const QUERY_STATE = 'QUERY_STATE';
     channels,
     alerts,
     loader) {
-    var vm = this;
+      
+    let vm = this;
 
     channels.register(
       THEME,
